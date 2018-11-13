@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+// var
+// -----------------------------------------------------------------
+$expand-min-width:            50px !default;
+$expand-max-width:            200px !default;
+
+$expand-height:               50px !default;
+$expand-pos:                  false !default;
+$expand-color:                $brand-secondary !default;
+$expand-bg:                   darken($brand-secondary,7) !default;
+
+$expand-icon-size:            28px !default;
+$expand-toggle-effect:        'color .5s' !default;
+
+$expand-input: (
+    padding:      0 $expand-min-width 0 15px,
+    font-size:    em(17),
+    background:   $expand-bg,
+    color:        lighten(black,85)
+) !default;
+
+$expand-btn: (
+    background:   $brand-primary,
+    color:        white
+) !default;
+
+$expand-toggle: (
+    background:   $expand-bg,
+    color:        $expand-color,
+) !default;
+
+$expand-hover-toggle: (
+    color:        lighten($brand-primary,10)
+) !default;
+
+
+// output
+// -----------------------------------------------------------------
+.search {
+    z-index: z(menu)+1;
+    -webkit-backface-visibility: hidden;
+
+    width: 0;
+    min-width: $expand-min-width;
+    overflow: hidden;
+
+    @include transition(width .3s);
+
+    @if $expand-height { height: $expand-height; }
+    @if $expand-pos {
+        @include absolute($expand-pos);
+    } @else {
+        position: relative;
+    }
+
+    &-open {
+        width: $expand-max-width;
+
+        .extend-input {
+            @each $attribute, $value in $expand-input {
+                #{$attribute}: #{$value};
+            }
+        }
+    }
+}
+.extend-input {
+    border: none;
+    border-radius: 0;
+    outline: none;
+    background: none;
+    // box-shadow: none;
+    font-size: 0;
+    -webkit-appearance: none;
+    z-index: 10;
+    @include size(100%);
+}
+.extend-btn,
+.extend-toggle {
+    @extend %block, .text-center;
+
+    @include absolute(top 0 right 0);
+    width: $expand-min-width;
+    height: 100%;
+
+    line-height: 100%;
+    // display: block;
+    // text-align: center;
+
+    @if $expand-icon-size { font-size: em($expand-icon-size); }
+
+    &::before { @include pos-center; }
+}
+.extend-btn {
+    border: none;
+    opacity: 0;
+    z-index: 11;
+
+    &.enter {
+        opacity: 1;
+
+        @each $attribute, $value in $expand-btn {
+            #{$attribute}: #{$value};
+        }
+    }
+}
+.extend-toggle {
+    z-index: 90;
+    speak: none;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+
+    @if $expand-toggle-effect { @include transition($expand-toggle-effect); }
+
+    @each $attribute, $value in $expand-toggle {
+        #{$attribute}: #{$value};
+    }
+
+    &:hover, &:active {
+
+        @each $attribute, $value in $expand-hover-toggle {
+            #{$attribute}: #{$value};
+        }
+    }
+}
+
+// $search-round-width:          100% !default;
+// $search-round-height:         $input-height !default;
+// $search-round-radius:         ($search-round-height / 2) !default;
+// $search-round-color:          $brand-primary lighten($brand-primary,25) !default;
+// $search-round-border-color:   false !default;
+// $search-round-pos:            false !default;
+
+// $search-round-btn-width:      $search-round-height !default;
+// $search-round-btn-height:     100% !default;
+// $search-round-btn-bg:         false !default;
+
+// == input群組
+// .search-round {
+
+//     @if $search-round-pos {
+//         @include absolute($search-round-pos);
+//     }
+//     @else {
+//         position: relative;
+//     }
+//     @if $search-round-width    { width: $search-round-width; }
+//     @if $search-round-height   { height: $search-round-height; }
+
+//     input {
+//         @include size(100%);
+
+//         @if $search-round-radius       { border-radius: $search-round-radius; }
+//         @if $search-round-border-color { border-color: $search-round-border-color; }
+//         @if $search-round-btn-width    { padding-right: $search-round-btn-width; }
+//     }
+//     button {
+//         cursor: pointer;
+//         @include absolute(top 0 right 0);
+
+//         @if $search-round-radius {
+//             border-top-right-radius: $search-round-radius;
+//             border-bottom-right-radius: $search-round-radius;
+//         }
+//         @if $search-round-btn-width  { width: $search-round-btn-width; }
+//         @if $search-round-btn-height { height: $search-round-btn-height; }
+//         @if $search-round-btn-bg {
+//             color: $white;
+//             background: nth($search-round-btn-bg,1);
+//             &:hover, &:active {
+//                 background: nth($search-round-btn-bg,2);
+//             }
+//         } @else {
+//             color: nth($search-round-color,1);
+//             &:hover, &:active {
+//                 color: nth($search-round-color,2);
+//             }
+//         }
+//     }
+// }

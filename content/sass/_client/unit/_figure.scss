@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+$figure-inline:           false !default;
+$figure-inline-hack:      if($figure-inline, true, false) !default;
+$figure-margin:           0 !default;
+$figure-effect:           false !default;
+$figure-styles:           () !default;
+
+$figcaption-effect:       false !default;
+$figcaption-full:         false !default;
+$figcaption-styles:       () !default;
+
+// 圖片樣式
+$figure-img-full:         false !default;
+$figure-img-styles:       () !default;
+
+
+// common style
+%figure-overlay {
+    @include size(100%);
+    @include absolute(left 0 top 0);
+}
+
+figcaption {
+    // 文字強迫大寫
+    // text-transform: uppercase;
+
+    @include prefix(backface-visibility, hidden);
+
+    &::before, &::after { pointer-events: none; }
+
+    @if $figcaption-effect { @include transition($figcaption-effect); }
+    @if $figcaption-full   { @extend %figure-overlay; }
+
+    @each $attribute, $value in $figcaption-styles {
+        #{$attribute}: #{$value};
+    }
+}
+
+figure {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    @if $figure-inline {
+        @extend %inline-block;
+        vertical-align: top;
+
+        @if $figure-inline-hack {
+            margin-right: -4px;
+            &:first-child { margin-left: -4px; }
+        }
+    } @else {
+        @extend %float-l;
+    }
+
+    @if $figure-margin { margin: $figure-margin; }
+    @if $figure-effect { @include transition($figure-effect) }
+
+    @each $attribute, $value in $figure-styles {
+        #{$attribute}: #{$value};
+    }
+
+    img {
+        position: relative;
+        z-index: 0;
+        @if $figure-img-full {
+            // display: block;
+            min-height: 100%;
+            max-width: 100%;
+        }
+        @each $attribute, $value in $figure-img-styles {
+            #{$attribute}: #{$value};
+        }
+    }
+
+    > a {
+        @extend %figure-overlay;
+        z-index: z(figure);
+        background: #fff;
+        opacity: 0;
+    }
+
+    // RWD
+    @if $enable-RWD {
+        @include mq-max(break(desktop, -1)) {
+            @extend %inline-block;
+            float: none;
+        }
+        @include mq-max(tablet) {
+            width: 48%;
+            max-width: none;
+            margin: 3px; margin-bottom: 15px;
+        }
+        @include mq-max(phone) { width: 100%; }
+    }
+}

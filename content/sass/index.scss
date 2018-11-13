@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+@import "_client/color";
+
+// 本頁專用變數(覆蓋)
+// ------------------------------------------------------------
+$index:                 true;
+$img-index:             '../images/index';
+
+$body-bg:               #fff;
+
+// layout
+$wrapper-bg:            false;
+$content-spacing:       0;
+$header-bg:             #1c2a3a;
+$header-height:         745px;
+$footer-height:         377px;
+$footer-bg:             #EFECE3;
+$footer-color:          $brand-primary-dark;
+
+// logo
+$logo-img:              'logo.png';
+$logo-size:             284px 168px;
+$logo-pos:              left 0 top -10px;
+
+// nav(menu)
+$nav-font-size:         21px;
+$nav-active-bg:         false; //darken($brand-secondary,5)
+$nav-active-color:      #EDE363;
+
+// btn
+$btn-pd:                17px 80px;
+$btn-border-radius:     2px;
+$btn-hover-bg:          $brand-secondary;
+
+// hover
+$is-hover-underline:    true;
+$is-hover-slip:         true;
+
+// dropdown
+$dropdown-toggle-color:         $brand-primary-light;
+$dropdown-toggle-hover-color:   $light-yellow;
+
+// figure
+$figure-styles:                 ( top: -35px);
+$figure-img-styles:             ( width: 100% );
+
+
+// import
+// ------------------------------------------------------------
+@import "_client/settings";
+
+// 共用
+@import "helper/function";
+@import "helper/variables";
+@import "helper/mixins";
+
+// 由此 output css
+@import "vendor/normalize"; // 重置復位
+// @import "vendor/print";     // 列印樣式
+
+@import "base/basic";
+@import "base/util";
+@import "base/grid";
+
+@import "vendor/icomoon";
+
+@import "_client/layout";
+@import "_client/unit/figure";
+@import "_client/unit/dropdown";
+@import "_client/unit/hover";
+@import "_client/unit/nav";
+@import "_client/unit/btn";
+@import "_client/unit/goTop";
+@import "_client/unit/classes";
+
+
+// main
+// ------------------------------------------------------------
+
+// 主力產品
+.main-product {
+    background: rgba(#1D2B3B,.8);
+
+    position: relative;
+    z-index: z(main);
+
+    @include mq(desktop,break(wider,-1)) {
+        margin-top: -290px;
+        height: 290px;
+    }
+    @include mq(wider) {
+        margin-top: -310px;
+        height: 310px;
+    }
+
+    h3 {
+        font-size: em(27);
+        letter-spacing: 2px;
+        margin-top: $spacer*1.5;
+        @include transition(color .5s);
+        @include prefix(transition-delay,.1s);
+
+        [lang="en"] &.font-lg { font-size: em(17); }
+    }
+    figcaption {
+        @include el(before, $content:'\e902') {
+            @include transition(opacity .35s, font-size .2s);
+            @include pos-center(x);
+            top: 48px;
+            font-family: 'icomoon';
+            font-size: em(25);
+            text-shadow: 0 0 10px #000;
+            opacity: 0;
+        }
+    }
+    figure:hover {
+        img {
+            @include prefix(filter, brightness(.5));
+        }
+        figcaption::before {
+            opacity: 1;
+            font-size: em(45);
+        }
+        h3 { color: $light-yellow; }
+    }
+}
+
+// 關於宏瀨
+.about {
+    @extend .padding-64;
+    position: relative;
+    z-index: z(footer)+1;
+    border-top: 3px solid $brand-primary;
+    box-shadow: 0 3px 8px #BFC1B5;
+
+    h1 { color: #177861; }
+
+    article {
+        @extend .text-left;
+        background: url(#{$img-index}/mainBg.jpg) right bottom no-repeat;
+        font-size: em(18);
+        line-height: 2;
+        max-width: 996px;
+        margin: auto;
+        padding-bottom: $gutter*3;
+        padding-right: 320px;
+    }
+}

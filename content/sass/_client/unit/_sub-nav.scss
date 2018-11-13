@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+// 第二層選單
+.sub-nav {
+    @extend %block, .text-left;
+    opacity: 0;
+    visibility: hidden;
+
+    // 本次專案
+    background: #fff;
+    height: 0;
+
+    @include absolute(top 174px left 0 right 0);
+    @include transition(opacity .4s, height .3s);
+
+    a {
+        @extend %inline-block;
+
+        width: 28%;
+        min-width: 290px;
+        margin: $spacer*.35 0;
+
+        color: #4d4d4d;
+        letter-spacing: 1px;
+
+        @include el(before, inline, '．');
+
+        &:hover, &:active {
+            @extend .text-primary;
+        }
+    }
+
+    @if $enable-RWD {
+        @include mq-max(break(#{$mobile-menu-bk},-1)) {
+            display: none;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            position: static;
+            top: 100%;
+            max-width: 100%;
+
+            background: darken($mobile-menu-bg,10);
+            box-shadow: inset 3px 6px 15px rgba(#000,.5);
+
+            a {
+                @extend .text-white;
+
+                padding: ($gutter - 4) $gutter+6;
+                color: $white;
+
+                &:hover, &:active {
+                    @extend .bg-primary;
+                    // background: $brand-primary;
+                }
+            }
+        }
+    }
+}

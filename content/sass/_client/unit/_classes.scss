@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+// common - extend的內容 寫在 base/util
+// ------------------------------------------------------------
+.block         { @extend %block; }
+.inline-block  { @extend %inline-block; }
+.inline        { @extend %inline; }
+
+.float-l       { @extend %float-l; }
+.float-r       { @extend %float-r; }
+.clear         { clear: both; }
+.clearfix      { @extend %clearfix; }
+
+.circle        { @extend %circle; } // 圓形
+.full          { @extend %full; }
+.half          { @extend %half; }
+.text-hide     { @extend %text-hide; }
+.sr-only       { @extend %sr-only; }
+.img-center    { @extend %block; margin: auto; }
+
+.margin        { margin: $gutter; }
+.margin-top    { margin-top: $gutter; }
+.margin-bottom { margin-bottom: $gutter; }
+.margin-left   { margin-left: $gutter; }
+.margin-right  { margin-right: $gutter; }
+.section       { margin-top: $gutter; margin-bottom: $gutter;}
+
+.padding-tiny  { padding: $gutter/8 $gutter/4; }     // 2px 4px
+.padding-sm    { padding: $gutter/4 $gutter/2; }     // 4px 8px
+.padding,
+.padding-md    { padding: $gutter/2 $gutter; }       // 8px 16px
+.padding-lg    { padding: $gutter*.75 $gutter*1.5; } // 12px 24px
+.padding-xl    { padding: $gutter $gutter*2; }       // 16px 32px
+.padding-xxl   { padding: $gutter*1.5 $gutter*3; }   // 24px 48px
+.padding-jumbo { padding: $gutter*2 $gutter*4; }     // 32px 64px
+.padding-2     { padding-top: $gutter/8; padding-bottom: $gutter/8; }
+.padding-4     { padding-top: $gutter/4; padding-bottom: $gutter/4; }
+.padding-8     { padding-top: $gutter/2; padding-bottom: $gutter/2; }
+.padding-12    { padding-top: $gutter*.75; padding-bottom: $gutter*.75; }
+.padding-16    { padding-top: $gutter; padding-bottom: $gutter; }
+.padding-24    { padding-top: $gutter*1.5; padding-bottom: $gutter*1.5; }
+.padding-32    { padding-top: $gutter*2; padding-bottom: $gutter*2; }
+.padding-48    { padding-top: $gutter*3; padding-bottom: $gutter*3; }
+.padding-64    { padding-top: $gutter*4; padding-bottom: $gutter*4; }
+
+.padding-0     { padding: 0; }
+.margin-0      { margin: 0; }
+
+
+// text
+// ------------------------------------------------------------
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+.text-center { text-align: center; }
+
+// .title-underline {
+//     border-bottom: 1px solid lighten(black, 83);
+//     padding-bottom: $spacer/1.5;
+//     position: relative;
+
+//     @include el(after) {
+//         height: 2px;
+//         width: 20%;
+//         background: $success;
+//         @include absolute(left 0 bottom -1px);
+//     }
+// }
+// .title-underline-d {
+//     small {
+//         @extend .font-sp, .font-md;
+
+//         margin-top: 13px;
+//         color: $muted;
+//         letter-spacing: 8px;
+//         text-transform: uppercase;
+
+//         @include el(all, inline-block, url('#{$img-path}/line.gif')) {
+//             position: relative;
+//             top: -4px;
+//         }
+
+//         &::before { margin-right: 10px; }
+//         &::after { margin-left: 10px; }
+//     }
+// }
+
+// .leading {
+//     margin-top: $spacer*1.2;
+//     margin-bottom: $spacer*2.2;
+// }
+
+.font-tiny  { font-size: $font-size-xs; }  // 13px
+.font-sm    { font-size: $font-size-sm; }  // 15px
+.font-md    { font-size: rem(16); }
+.font-lg    { font-size: $font-size-lg; }  // 20px
+.font-xl    { font-size: rem(26); }
+.font-xxl   { font-size: rem(37); }
+.font-xxxl  { font-size: rem(48); }
+.font-jumbo { font-size: rem(64); }
+
+
+// 情境: var.scss> $states: true
+// ------------------------------------------------------------
+@if $states {
+
+    .text-white { color: $white; }
+    .bg-white   { background: $white; }
+
+    @each $type, $color in $state-type {
+        .text-#{$type} { color: darken($color,5); }
+        .bg-#{$type}   { background: $color; }
+    }
+}
+
+
+// RWD
+// ------------------------------------------------------------
+@if $enable-RWD {
+    .mobile-hide {
+        @include mq-max(break(desktop,-1)) {
+            display: none;
+            visibility: hidden;
+        }
+    }
+}

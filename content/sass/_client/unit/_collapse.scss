@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+$collapse-title-color:         false !default;
+
+$collapse-title-styles:        false !default;
+$collapse-content-styles:      false !default;
+
+$collapse-icon-position:       'after' !default;
+$collapse-icon-close:          '\e90c' !default;
+$collapse-icon-open:           '\e90f' !default;
+$collapse-icon-color:          $collapse-title-color !default;
+$collapse-icon-color-hover:    $brand-secondary !default;
+
+
+.collapse-title {
+    cursor: pointer; cursor: hand;
+
+    @if $collapse-title-color { color: $collapse-title-color; }
+
+    @each $attribute, $value in $collapse-title-styles {
+        #{$attribute}: #{$value};
+    }
+
+    @include el($collapse-icon-position, inline-block, $collapse-icon-close) {
+        @if $collapse-icon-color {
+            color: $brand-primary;
+        }
+        @if $collapse-icon-position == 'after' {
+            margin-left: 8px;
+        } @else if $collapse-icon-position == 'before' {
+            margin-right: 8px;
+        }
+
+        font-family: 'icomoon' !important;
+        speak: none;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    &:hover, &:active, &.current {
+        &::#{$collapse-icon-position} {
+            @if $collapse-icon-color-hover { color: $collapse-icon-color-hover; }
+        }
+    }
+    &.current::#{$collapse-icon-position} {
+        content: $collapse-icon-open;
+    }
+}
+.collapse-content {
+    display: none;
+
+    @each $attribute, $value in $collapse-content-styles {
+        #{$attribute}: #{$value};
+    }
+}

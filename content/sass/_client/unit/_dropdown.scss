@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+$dropdown-styles:               () !default;
+
+$dropdown-toggle-color:         $white !default;
+$dropdown-toggle-hover-color:   rgba($white,.5) !default;
+$dropdown-toggle-font-size:     12px !default;
+$dropdown-toggle-styles:        () !default;
+
+$dropdown-arrow-size:           5px !default;
+$dropdown-arrow-color:          $dropdown-toggle-color !default;
+$dropdown-arrow-hover-color:    $dropdown-toggle-hover-color !default;
+$dropdown-arrow-pos:            right 5% top 45% !default;
+
+$dropdown-content-styles: (
+    width: 100%,
+    background-color: $white,
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2)
+) !default;
+
+$dropdown-link-styles: (
+    padding: 15px 0,
+    font-size: em(19)
+) !default;
+$dropdown-hover-link-styles: () !default;
+
+
+// 下拉最外層容器
+.dropdown {
+    position: relative;
+    z-index: z(dropdown);
+
+    @each $attribute, $value in $dropdown-styles {
+        #{$attribute}: #{$value};
+    }
+}
+
+// 顯示隱藏按鈕
+.dropdown-toggle {
+    @include size(100%);
+    cursor: pointer;
+    transition: all .5s ease;
+
+    @if $dropdown-toggle-color { color: $dropdown-toggle-color; }
+    @if $dropdown-toggle-font-size { font-size: em($dropdown-toggle-font-size); }
+
+    @each $attribute, $value in $dropdown-toggle-styles {
+        #{$attribute}: #{$value};
+    }
+
+    @include icon-arrow(down, $dropdown-arrow-size, $dropdown-arrow-color, $dropdown-arrow-pos) {
+        @if $enable-RWD {
+            @include mq-max(break(#{$mobile-menu-bk},-1)) { top: 20px; }
+        }
+    }
+
+    &:hover, &:active {
+        @if $dropdown-toggle-hover-color { color: $dropdown-toggle-hover-color; }
+
+        &::before { border-top-color: $dropdown-arrow-hover-color; }
+    }
+}
+
+// 隱藏內容
+.dropdown-content {
+    display: none;
+    z-index: z(dropdown) + 1;
+    @include absolute(top 100%);
+
+    @each $attribute, $value in $dropdown-content-styles {
+        #{$attribute}: #{$value};
+    }
+
+    a {
+        @extend %block;
+        @each $attribute, $value in $dropdown-link-styles {
+            #{$attribute}: #{$value};
+        }
+
+        &:hover, &:active, &.active {
+            @each $attribute, $value in $dropdown-hover-link-styles {
+                #{$attribute}: #{$value};
+            }
+        }
+    }
+}

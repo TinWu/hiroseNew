@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+$breadcrumb-color:          #4d4d4d !default;
+$breadcrumb-font-size:      17px !default;
+
+$breadcrumb-link:           $brand-primary $brand-secondary !default; // normal hover
+$breadcrumb-link-font-size: 14px !default;
+
+
+//
+// breadcrumb
+// --------------------------------------------------
+
+.breadcrumb {
+    @extend %list-inline, .text-left;
+
+    background: url(#{$img-path}/a1.jpg) 0 1px no-repeat, url(#{$img-path}/a2.jpg) right 1px no-repeat;
+    border-bottom: 1px solid #D2D2D2;
+    padding-bottom: $gutter;
+    padding-left: 22px;
+    margin: $spacer 27px;
+
+    li {
+        font-size: em($breadcrumb-font-size) !important;
+        color: $breadcrumb-color;
+
+        // [lang="en"] & { font-family: Verdana, Arial, Helvetica, sans-serif; }
+
+        &:not(:last-child) {
+            margin-right: 3px;
+
+            @include el(after, false, '>') {
+                margin-left: 5px;
+                font-size: em(17);
+                position: relative;
+                top: -2px;
+            }
+        }
+        &:last-child {
+            font-weight: bold;
+            color: #333;
+        }
+    }
+
+    // a {
+    //     color: nth($breadcrumb-link,1);
+    //     font-size: em($breadcrumb-link-font-size,$breadcrumb-font-size);
+
+    //     &:hover, &:active { color: nth($breadcrumb-link,2); }
+    // }
+}

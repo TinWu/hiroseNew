@@ -1,0 +1,153 @@
+﻿@charset "UTF-8";
+
+$list-dot-color: $brand-primary !default;
+// $list-circle-bg: $brand-primary;
+
+// list - extend的內容 寫在 base/util
+// ------------------------------------------------------------
+.list-unstyled { @extend %list-unstyled; }
+.list-inline   { @extend %list-inline; }
+
+// 小圓點
+// .list-dot {
+//     @extend %list-unstyled;
+//     margin: $spacer 0;
+
+//     li {
+//         position: relative;
+//         line-height: 1.35;
+//         margin-bottom: 0.8rem;
+//         font-size: em(15);
+
+//         @include icon-dot(left, 5px, $list-dot-color, left 0 top 10px);
+//     }
+// }
+
+@if $page {
+    .news-list {
+        li {
+            @extend .text-white;
+            border-radius: 10px 0 10px 0;
+            box-shadow: 0 0 10px lighten(black,75);
+            position: relative;
+            vertical-align: top;
+            width: 245px;
+            height: 273px;
+            margin: 0 22px $spacer*1.5 22px;
+        }
+        header, .block {
+            @extend .text-left, .padding;
+        }
+        header {
+            @extend .padding-12;
+            border-bottom: 1px solid rgba(#fff,.3);
+        }
+        .block {
+            @extend .text-white;
+            margin: $spacer*.8 0;
+            letter-spacing: 1px;
+
+            &:hover, &:active { color: lighten($warning,20); }
+        }
+        .label {
+            margin-right: -5px;
+            @extend .bg-white;
+        }
+        .btn {
+            @extend .text-white;
+            background: rgba(#fff, .2);
+            border: none;
+            padding: 8px 30px;
+            // margin: auto;
+            @include pos-center(x);
+            bottom: 28px;
+
+            &:hover, &:active {
+                @extend .bg-white, .text-secondary;
+                // background: #fff;
+                // color: $brand-secondary;
+            }
+        }
+        .activity {
+            @extend .bg-success;
+            .label { @extend .text-success; }
+        }
+        .public {
+            @extend .bg-danger;
+            .label { @extend .text-danger; }
+        }
+        .info {
+            @extend .bg-info;
+            .label { @extend .text-info; }
+        }
+    }
+
+    .list-underline, .list-num {
+
+        > li   { font-size: em(17); }
+
+        ol, ul {
+            @extend .font-md;
+            margin-top: $spacer*.35;
+        }
+    }
+
+    .list-underline {
+        > li {
+            @extend .padding-12;
+            &:not(:last-child) { border-bottom: 1px dashed lighten($brand-primary,10); }
+        }
+    }
+
+    .list-indent {
+        $ind: 51px;
+
+        padding-left: 0;
+        margin-bottom: $spacer*2;
+
+        > li {
+            text-indent: -(em($ind));
+            padding-left: em($ind);
+            line-height: 1.7;
+        }
+
+        ol, ul {
+            text-indent: -(em(32));
+            margin-left: 32px;
+        }
+    }
+
+    .list-num {
+        // @extend %list-unstyled;
+        // counter-reset: section;
+        // li::before {
+        //     counter-increment: section;
+        //     content: counters(section,".") " ";
+        // }
+        padding-left: 28px;
+        list-style-type: cjk-ideographic;
+
+        // ol { list-style-type: decimal-leading-zero; }
+        ol ol { list-style-type: lower-latin; }
+        ol ol ol { list-style-type: initial; }
+    }
+
+    .list-data {
+        @extend %float-l, .bg-white, .font-lg;
+
+        width: 32.5%;
+
+        &:not(:nth-child(3n)) { margin-right: 1%; }
+
+        dt, dd { @extend .padding-sm; }
+        dt {
+            @extend %float-l;
+            font-weight: normal;
+            width: 100px;
+            background: darken($pale-yellow,2);
+            color: darken($yellow,40);
+            border-right: 1px solid darken($pale-yellow,45);
+        }
+        dd { overflow: hidden; }
+    }
+}

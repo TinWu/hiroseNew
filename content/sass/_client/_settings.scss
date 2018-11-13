@@ -1,0 +1,93 @@
+﻿@charset "UTF-8";
+
+
+// == config
+// ----------------------------------------------------------------------
+$img-path:              '../images' !default;
+$font-path:             '../font' !default;
+$index:                 false !default;           // 首頁用
+$page:                  false !default;           // 內頁用
+
+
+// == helper/variables
+// ----------------------------------------------------------------------
+$body-bg:               #1D2B3B !default;
+$body-color:            #333 !default;
+
+$font-family-sp:        'Quicksand', sans-serif;
+
+
+// == layout
+// ----------------------------------------------------------------------
+$min-width:             1008px !default;     // 網頁最小尺寸
+$max-width:             1400px !default;     // 網頁最寬尺寸: .wrap
+$menu-item:             'Profile' 'News' 'Products' 'People' 'Contact' 'Link';
+
+$wrapper-bg:            #fff !default;
+$content-spacing:       50px !default;
+
+// header
+$header-height:         262px !default;
+$header-bg:             #003327 !default;
+$banner-height:         $header-height !default;
+
+// logo
+$logo-img:              'logo2.png' !default;
+$logo-size:             330px 171px !default;
+$logo-pos:              left -5px top 22px !default;
+
+// footer
+$footer-height:         142px !default;
+$footer-bg:             false !default;
+$footer-color:          #5B595A !default; //#63889D;
+
+// z-index
+$z-index: (
+    header:             1,
+    main:               2,
+    footer:             4,
+    sidebar:            3,
+    banner:             1,
+    logo:               10,
+    menu:               20,
+    figure:             90,
+    dropdown:           21,
+    tooltip:            22,
+    modal:              23,
+    toggle:             25,
+    goTop:              99,
+    overlay:            999
+);
+
+$grid-breakpoints:      ();
+
+
+// == unit
+// ----------------------------------------------------------------------
+// goTop
+$goTop-color:           #fff;
+$goTop-styles: (
+    opacity: 0,
+    background: rgba($brand-primary,.8),
+    font-size: 23px,
+    padding: 5px 10px,
+    border-radius: 3px
+);
+$goTop-hover-styles: (
+    background: $brand-primary
+);
+
+// dropdown
+$dropdown-toggle-color:         #74B5B5 !default;
+$dropdown-toggle-hover-color:   #fff !default;
+$dropdown-toggle-font-size:     14px !default;
+$dropdown-link-styles: (
+    padding: 3px 0
+) !default;
+$dropdown-hover-link-styles: (
+    background: $brand-primary-light,
+    color: #fff,
+) !default;
+
+// icomoon
+$icomoon-font-path:               '../font/icomoon';

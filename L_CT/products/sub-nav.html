@@ -1,0 +1,14 @@
+﻿<nav class="sub-nav">
+    <a href="products-1-ts-01.html">噴霧乾燥機</a>
+    <a href="products-1-ts-03.html">臥式砂磨機</a>
+    <a href="products-1-ts-04.html">相關項目</a>
+</nav>
+
+<script>
+    var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
+    $(".sub-nav a").each(function() {
+        if ($(this).attr("href") == pgurl || $(this).attr("href") == '' ) {
+            $(this).addClass("active");
+        }
+    });
+</script>

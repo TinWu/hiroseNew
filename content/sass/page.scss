@@ -1,0 +1,192 @@
+@charset "UTF-8";
+
+@import "_client/color";
+
+// 本頁專用變數(覆蓋)
+// ------------------------------------------------------------
+$page:                  true;
+$states:                false;
+
+$headings-font-family:  '新細明體', 'PMingLiU', Verdana, Arial, Helvetica, sans-serif;
+$headings-font-weight:  bold;
+
+$min-width:             false;
+
+// navbar
+$nav-width:             false;
+$navbar-height:         43px;
+$navbar-bg:             $brand-secondary;
+$nav-font-size:         18px;
+$nav-active-bg:         $brand-primary; //darken($brand-secondary,5)
+
+// hover
+$is-hover-slip:         true;
+
+$breadcrumb-font-size:  12px;
+$breadcrumb-color:      #666;
+
+
+// import
+// ------------------------------------------------------------
+@import "_client/settings";
+
+// 共用
+@import "helper/function";
+@import "helper/variables";
+@import "helper/mixins";
+
+// 由此 output css
+@import "vendor/normalize"; // 重置復位
+// @import "vendor/print";     // 列印樣式
+
+@import "base/basic";
+@import "base/util";
+
+@import "vendor/icomoon";
+
+@import "_client/layout";
+@import "_client/unit/dropdown";
+@import "_client/unit/hover";
+@import "_client/unit/nav";
+@import "_client/unit/goTop";
+@import "_client/unit/breadcrumb";
+@import "_client/unit/classes";
+
+
+// main
+// ------------------------------------------------------------
+#main {
+    @extend .text-left;
+    font-family: '新細明體', 'PMingLiU', Verdana, Arial, Helvetica, sans-serif;
+
+    [lang="en"] & {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        color: #666;
+    }
+}
+
+p { @extend .margin-0; }
+
+table {
+    border-collapse: collapse;
+    img { max-width: 825px; }
+}
+
+// 次選單
+.sub-nav {
+    @extend %float-r;
+    margin: -12px 20px 20px 0;
+
+    a {
+        color: #666;
+        font-size: em(12);
+        line-height: 1.01;
+        padding: 0 6px;
+
+        &:hover, &:active { color: #177861; }
+        &.active { color: #333; }
+        &:not(:last-child) {
+            border-right: 1px solid #666;
+        }
+    }
+}
+
+// 內頁標題
+.title {
+    margin-bottom: $spacer;
+    margin-left: 23.5px;
+}
+
+// 內頁list
+#table3 {
+    [colspan="3"] {
+        vertical-align: top;
+        height: 40px !important;
+        // img { width: 752px; }
+    }
+}
+
+// 最新消息
+#content {
+    margin: 0 32.5px;
+    font-size: em(13);
+
+    .title { margin-left: -9px; }
+}
+.news-list {
+    @extend %full;
+    margin-top: -10px;
+    font-size: 13px;
+    td {
+        border-bottom: 1px dotted #C9C9C9;
+        padding: 20px 0;
+    }
+    .pic { width: 250px; }
+    h6 {
+        // font-size: em(14);
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+    }
+    img { max-width: 230px; }
+    .more { @extend %float-r, .margin-top; }
+}
+.pager {
+    @extend %list-inline, .margin-top;
+
+    li {
+        line-height: 1.01;
+        &:first-child {
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            padding: 0 8px;
+        }
+    }
+    a {
+        text-decoration: underline;
+        margin: 0 3px;
+    }
+}
+
+// 最新消息內頁
+.back {
+    color: #666;
+    em { color: #1689E1; }
+}
+article {
+    h5 {
+        letter-spacing: 1px;
+        color: #000;
+        margin-bottom: $spacer*1.8;
+
+        small { margin-bottom: $spacer*.7; }
+    }
+}
+.text-muted { color: $muted; }
+
+// 投資人關係
+.table-striped {
+    font-size: em(11);
+    color: #666;
+    margin: 2%;
+    width: 96%;
+
+    th, td {
+        padding: 2px 5px;
+        border: 1px solid #fff;
+    }
+
+    th {
+        color: #fff;
+        background: #0066FF;
+    }
+    tr:nth-child(even) {
+        td { background: #E0E0E0; }
+    }
+}
+
+// 聯絡我們
+.submit-bar {
+    @extend .text-right, .margin-right;
+
+    input, img { vertical-align: middle; }
+}

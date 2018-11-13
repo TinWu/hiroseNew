@@ -1,0 +1,271 @@
+@charset "UTF-8";
+
+
+/*      layout
+-----------------------------------------------------------------------*/
+// 置中(有最大寬度限制,非滿版才需要)
+%center {
+    max-width: $max-width;
+    margin: 0 $gutter*3;
+    @include mq(wider) { margin: 0 auto; }
+
+    @if $enable-RWD {
+        @include mq-max(tablet) { margin: 0; }
+    }
+    @else {
+        @include mq-max(break(wide,-1)) {
+            margin: 0;
+            padding-left: $gutter*2;
+            padding-right: $gutter*2;
+        }
+    }
+}
+
+// RWD容器
+%contain {
+    @extend %clearfix;
+
+    @if $enable-RWD {
+        @include mq-max(tablet) {
+            padding-left: $gutter;
+            padding-right: $gutter;
+        }
+    } @else {
+        @if $min-width { min-width: $min-width; }
+    }
+}
+
+.wrap {
+    @extend %center, %contain;
+}
+
+#header, #footer, #main {
+    @extend %contain;
+    position: relative;
+}
+
+#wrapper {
+    @if $lte7 { _height: 100%; }
+    min-height: 100%;
+    padding-bottom: $footer-height + $content-spacing; // 內容與footer間距
+
+    @if $wrapper-bg {
+        background: $wrapper-bg;
+    }
+    @if not $enable-RWD {
+        @if $min-width { min-width: $min-width; }
+    }
+
+    // 本次專案
+    @if $page {
+        width: 825px;
+        margin: auto;
+    }
+}
+
+
+// header
+// ----------------------------------------------------------------------
+#header {
+    @if $header-bg { background: $header-bg; }
+    height: $header-height;
+    z-index: z(header);
+
+    // 本次專案
+    @if $index {
+        .wrap { position: relative; }
+
+        @include el(before) {
+            @include absolute(left 0 top 0 right 0);
+            background: url(#{$img-index}/headerBg.png) 0 0 repeat-x;
+            height: 211px;
+            z-index: z(banner)+1;
+        }
+    }
+    @if $page {
+        border-bottom: 3px solid #E6E6E6;
+    }
+}
+
+$line-color: lighten(black,40);
+$font-gray: #7F7F7F;
+
+.logo {
+    cursor: pointer; cursor: hand; // for ie
+    z-index: z(logo);
+
+    @if $logo-img {
+        @include text-pic($logo-img, nth($logo-size,1), nth($logo-size,2), $position:center);
+    }
+
+    @if $logo-pos {
+        @if $logo-pos == center {
+            @include pos-center(x);
+        }
+        @else {
+            @include absolute($logo-pos);
+        }
+    } @else {
+        float: left;
+    }
+}
+
+// 本次專案
+#banner {
+    @include absolute(left 0 top 0);
+    @include size(100%);
+
+    h2 {
+        @if $index {
+            @include absolute(top 36%);
+            width: 100%;
+            color: #fff;
+            font-size: em(41);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px #000;
+            z-index: 2;
+
+            small { margin-top: 12px; }
+        }
+        @if $page { display: none; }
+    }
+}
+.swiper-wrapper {
+    @extend %list-unstyled;
+    @if $index { min-width: 100%; }
+    @if $page { width: 825px; }
+}
+.swiper-slide {
+    @if $index { background-position: center bottom; }
+    @if $page { background-position: center 0; }
+    background-repeat: no-repeat;
+    width: 100% !important;
+
+    @include mq(bigger) {
+        background-size: cover;
+    }
+
+    // &.swiper-slide-active {
+    //     -ms-transform: translate3d(0, 0, 0);
+    //     -webkit-transform: translate3d(0, 0, 0);
+    //     transform: translate3d(0, 0, 0) !important;
+    // }
+}
+@if $index {
+    .i1 { background-image: url(#{$img-index}/banner.jpg); }
+    .i2 { background-image: url(#{$img-index}/banner2.jpg); }
+    .i3 { background-image: url(#{$img-index}/banner3.jpg); }
+}
+@if $page {
+    .i1 { background-image: url(#{$img-path}/banner.jpg); }
+    .i2 { background-image: url(#{$img-path}/banner2.jpg); }
+    .i3 { background-image: url(#{$img-path}/banner3.jpg); }
+}
+
+// footer 頁腳
+// ----------------------------------------------------------------------
+#footer {
+    @if $footer-bg { background: $footer-bg; }
+    min-height: $footer-height;
+    margin-top: -($footer-height);
+    z-index: z(footer);
+
+    // 本次專案
+    @if $page {
+        width: 760px;
+        margin-left: auto;
+        margin-right: auto;
+
+        img { max-width: 100%; }
+    }
+}
+.copyright {
+    @extend %full;
+
+    @if $index {
+        @extend .padding-8;
+        color: #ccc;
+        letter-spacing: 1px;
+        font-size: em(12);
+        background: $brand-secondary;
+        bottom: 0;
+    }
+    @if $page {
+        @extend .text-right, .padding-4;
+        color: #aaa;
+        font-size: em(11);
+    }
+}
+@if $index {
+    .copyright, .foot-contact, #map-canvas {
+        position: absolute;
+    }
+    .foot-contact {
+        @extend .bg-white, .text-left, .padding-32;
+        padding-left: 38px;
+        width: 588px;
+        left: 50%; top: 90px;
+        margin-left: -(cp(580px));
+        color: $footer-color;
+        border: 1px solid $success;
+
+        strong {
+            @extend %block, .text-secondary;
+            font-weight: normal;
+            letter-spacing: 1px;
+            &:not(:last-child) { margin-bottom: $spacer*.35; }
+        }
+        [class*="icon"]::before {
+            color: $brand-primary-light;
+            vertical-align: middle;
+        }
+        p { margin: $spacer*.4 0 0 18px; }
+        a { color: $footer-color; }
+    }
+    #map-canvas {
+        @extend %full;
+        left: 0; top: 0;
+        bottom: 34px;
+    }
+}
+@if $page {
+    .foot-nav {
+        background: #EFEDEE;
+        padding: 3px 0;
+
+        a {
+            @extend %inline-block;
+            color: lighten(#000, 20);
+            font-size: em(12);
+            font-family: '新細明體', 'PMingLiU', Georgia, sans-serif;
+            line-height: 1.01;
+            padding: 0 13px;
+
+            &:not(:last-child) { border-right: 1px solid #aaa; }
+            &:hover, &:active { color: $brand-primary; }
+        }
+    }
+}
+
+
+// RWD
+// ----------------------------------------------------------------------
+@if $enable-RWD {
+    @if $mobile-menu-style == 'push' {
+        body {
+            @include transition(left .35s);
+            overflow-x: hidden;
+            position: relative;
+            left: 0;
+        }
+        .push {
+            left: $mobile-menu-width;
+            overflow-y: hidden;
+        }
+    }
+    @else if $mobile-menu-style == 'overlay' {
+        .overlay {
+            overflow: hidden;
+        }
+    }
+}

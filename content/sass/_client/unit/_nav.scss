@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+// navbar style
+$navbar-height:       50px !default;
+$navbar-bg:           false !default; //#2AA19D
+
+// nav style
+$nav-width:           'average' !default;
+$nav-height:          'full' !default;
+$nav-font-size:       17px !default;
+$nav-color:           white !default;
+
+// nav active
+$nav-active-bg:       $success !default; //darken($brand-secondary,5)
+$nav-active-color:    false !default;
+
+
+// 當前選單
+$current:             page('&:nth-child');
+
+// 行動選單(mobile-trigger)
+$mobile-menu-bk:      'desktop' !default;     // 從()螢幕寬度以下開始出現行動版選單
+$mobile-menu-bg:      #424242 !default;
+$mobile-menu-style:   'overlay' !default;
+$mobile-menu-width:   100% !default;
+
+
+// 主選單
+.navbar {
+    z-index: z(menu);
+    @if $navbar-height { height: $navbar-height }
+    @if $navbar-bg     { background: $navbar-bg }
+
+    a {
+        @extend %block, %float-l;
+
+        @if $nav-color     { color: $nav-color; }
+        @if $nav-font-size { font-size: em($nav-font-size); }
+
+        @if ($nav-height == 'full') {
+            height: 100%;
+            @include text-middle($navbar-height);
+        } @else {
+            height: $nav-height;
+        }
+        @if ($nav-width == 'average') {
+            width: percentage(1/length($menu-item));
+        }
+
+        &:hover, &:active,
+        #{$current} {
+            @if $nav-active-bg    { background: $nav-active-bg; }
+            @if $nav-active-color { color:$nav-active-color; }
+        }
+    }
+}
+
+#menu {
+    @if $index {
+        position: relative;
+        margin-left: nth($logo-size,1) + 20;
+        top: 62px;
+    }
+    @if $page {
+        @include absolute(bottom 0 left 0 right 0);
+    }
+
+    a {
+        letter-spacing: 2px;
+
+        @if $index {
+            @include transition(color .3s, transform .35s);
+            @include mq(wider) { font-size: em(22); }
+            &:hover {
+                @include transform(translateY(-2px));
+                text-shadow: 0 0 7px rgba(#000,.8);
+            }
+
+            [lang="en"] & {
+                width: auto;
+                padding: 0 2%;
+            }
+        }
+        @if $page {
+            @extend .hover-slip;
+            padding: 0 2.88%;
+
+            [lang="en"] & {
+                font-size: em(16);
+                padding: 0 3.08%;
+            }
+        }
+    }
+
+    @if $enable-RWD {
+        @include mq-max(break(#{$mobile-menu-bk},-1)) {
+            @include fixed(top 0);
+            overflow-y: auto;
+            z-index: z(overlay);
+
+            background: $mobile-menu-bg;
+            width: $mobile-menu-width;
+            height: 100%;
+
+            // 本次專案
+            margin-top: 0;
+
+            // 推拉樣式
+            @if $mobile-menu-style == 'push' {
+                @extend .text-left;
+                left: -$mobile-menu-width;
+                // text-align: left;
+
+                @include transition(left .35s);
+
+                .push & { left: 0; }
+
+                li {
+                    border-bottom: 1px solid lighten($mobile-menu-bg,5);
+                    width: 100%;
+                }
+                .root {
+                    color: #fff;
+                    font-size: em(18px);
+                    padding: $gutter/2 $gutter;
+                }
+            }
+
+            // 全版樣式
+            @else if $mobile-menu-style == 'overlay' {
+                overflow-x: hidden;
+                visibility: hidden;
+                top: -50%;
+                left: 0;
+                opacity: 0;
+                padding: 3% 0;
+
+                @include transition(top .5s, opacity 1s);
+
+                .overlay & {
+                    top: 0;
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// 語系按鈕
+.lang-nav {
+    position: absolute;
+    height: 26px;
+
+    @if $index {
+        width: 120px;
+        right: 0;
+        top: 12px;
+    }
+    @if $page {
+        width: 125px;
+        right: 30px;
+        top: 20px;
+    }
+
+    .dropdown-toggle {
+        outline: none;
+        background: none;
+
+        @if $page {
+            border: none;
+            text-align: left;
+            background: rgba(#fff,.8);
+            border: 1px solid #fff;
+
+            &:hover, &:active {
+                background: $brand-primary-light;
+            }
+        }
+    }
+}

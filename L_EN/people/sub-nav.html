@@ -1,0 +1,14 @@
+﻿<nav class="sub-nav">
+    <a href="people-001.html">Company Overview</a>
+    <a href="people-002.html">Financial Information</a>
+    <a href="people-003.html">Annual Report for Shareholders Meeting</a>
+</nav>
+
+<script>
+    var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
+    $(".sub-nav a").each(function() {
+        if ($(this).attr("href") == pgurl || $(this).attr("href") == '' ) {
+            $(this).addClass("active");
+        }
+    });
+</script>

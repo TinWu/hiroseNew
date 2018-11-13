@@ -1,0 +1,15 @@
+﻿<nav class="sub-nav">
+    <a href="profile-1.html">关於宏濑</a>
+    <a href="profile-2.html">公司沿革</a>
+    <a href="profile-4.html">公司组织</a>
+    <!-- <a href="profile-3.html">工厂及研发</a> -->
+</nav>
+
+<script>
+    var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/")+1);
+    $(".sub-nav a").each(function() {
+        if ($(this).attr("href") == pgurl || $(this).attr("href") == '' ) {
+            $(this).addClass("active");
+        }
+    });
+</script>

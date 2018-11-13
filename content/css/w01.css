@@ -1,0 +1,178 @@
+.w01 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666666;
+}
+
+.w0000 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #1689E1;
+    line-height: 14px;
+	font-weight: bold;
+}
+
+.wBBB {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #333;
+	line-height: 18px;
+	font-weight: ;
+}
+
+.wBBB1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #333;
+	line-height: 18px;
+	font-weight: bold;
+}
+
+
+.font1 {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 12px;
+}
+
+.w01-1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+	line-height: 22px;
+}
+
+
+.w01-news {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	line-height: 14px;
+}
+
+.w01-news1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000;
+	line-height: 14px;
+	font-weight: bold;
+}
+
+
+.w01-news2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #333;
+	line-height: 20px;
+}
+
+.w01-news3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #333;
+	line-height: 26px;
+	font-weight: bold;
+}
+
+
+
+
+.w01-2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	line-height: 20px;
+	font-weight: bold;
+}
+
+
+.w01-3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	line-height: 20px;
+	font-weight:;
+}
+
+.w01-4 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666;
+	line-height: 1.01;
+}
+
+
+.w01-4-1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	line-height: 16px;
+}
+
+.w01-4-22 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+	line-height: 22px;
+}
+
+.w01-4-3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #C00;
+	line-height: 22px;
+}
+
+.w01-5 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	line-height: 16px;
+	font-weight: bold;
+}
+
+
+.w06 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666666;
+	line-height: 18px;
+}
+
+.w07 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+	line-height: 24px;
+}
+
+.w08 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	line-height: 24px;
+}
+
+.encompany,
+.encompany1,
+.Careers,
+.contactuss,
+.investors,
+.lith,
+.news-title {
+	font: bold 16px/24px Verdana, Arial, Helvetica, sans-serif;
+}
+.encompany { color: #908301; }
+.encompany1 { color: #333; }
+.Careers { color: #06F; }
+.contactuss { color: #8E34CA; }
+.investors { color: #060; }
+.lith { color: #0090FF; }
+.news-title { color: #920500; }
+
+
+.encompany2,
+.encompany3 {
+	font: bold 12px/16px Verdana, Arial, Helvetica, sans-serif;
+}
+.encompany2 { color: #333; }
+.encompany3 { color: #060; }
